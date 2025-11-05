@@ -37,14 +37,14 @@ public class Robot extends TimedRobot {
    * for any
    * initialization code.
    */
-  /*
-   * VictorSPX Lmotor1 = new VictorSPX(34);
-   * TalonSRX Lmotor2 = new TalonSRX(33);
-   * VictorSPX Rmotor1 = new VictorSPX(31);
-   * TalonSRX Rmotor2 = new TalonSRX(32);
-   */
+  
+    VictorSPX Lmotor1 = new VictorSPX(34);
+    TalonSRX Lmotor2 = new TalonSRX(33);
+    VictorSPX Rmotor1 = new VictorSPX(31);
+    TalonSRX Rmotor2 = new TalonSRX(32);
+   
   Joystick joystick = new Joystick(0);
-  // AHRS gyro = new AHRS(AHRS.NavXComType.kMXP_SPI);
+   AHRS gyro = new AHRS(AHRS.NavXComType.kMXP_SPI);
 
   Compressor com = new Compressor(PneumaticsModuleType.CTREPCM);
   DoubleSolenoid sol = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
@@ -71,21 +71,21 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
 
-    /*
-     * if (joystick.getRawButton(2)) {
-     * gyro.reset();
-     * }
-     * double angle = gyro.getYaw();
-     * double ENC = Lmotor2.getSelectedSensorPosition();
-     * 
-     * Lmotor1.set(ControlMode.PercentOutput, joystick.getRawAxis(1) * -0.5);
-     * Lmotor2.set(ControlMode.PercentOutput, joystick.getRawAxis(1) * -0.5);
-     * Rmotor1.set(ControlMode.PercentOutput, joystick.getRawAxis(5) * 0.5);
-     * Rmotor2.set(ControlMode.PercentOutput, joystick.getRawAxis(5) * 0.5);
-     * 
-     * SmartDashboard.putNumber("angle", angle);
-     * SmartDashboard.putNumber("Encoder", ENC);
-     */
+    
+      if (joystick.getRawButton(2)) {
+      gyro.reset();
+      }
+      double angle = gyro.getYaw();
+      double ENC = Lmotor2.getSelectedSensorPosition();
+      
+      Lmotor1.set(ControlMode.PercentOutput, joystick.getRawAxis(1) * -0.5);
+      Lmotor2.set(ControlMode.PercentOutput, joystick.getRawAxis(1) * -0.5);
+      Rmotor1.set(ControlMode.PercentOutput, joystick.getRawAxis(5) * 0.5);
+      Rmotor2.set(ControlMode.PercentOutput, joystick.getRawAxis(5) * 0.5);
+      
+      SmartDashboard.putNumber("angle", angle);
+      SmartDashboard.putNumber("Encoder", ENC);
+     
     if (joystick.getRawButton(1)) {
       com.enableDigital();
     } else if (joystick.getRawButton(2)) {
